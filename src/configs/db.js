@@ -1,4 +1,4 @@
-const { Sequelize } = require('sequelize');
+import { Sequelize } from 'sequelize';
 
 const sequelize = new Sequelize('test', 'postgres', 'huevangxp', {
     host: 'localhost',
@@ -17,11 +17,11 @@ const sequelize = new Sequelize('test', 'postgres', 'huevangxp', {
         await sequelize.authenticate();
         console.log('✅ Connection has been established successfully.');
         
-        await sequelize.sync({ force: false }); // Sync models
+        await sequelize.sync({ force: false });  
         console.log('✅ All models were synchronized successfully.');
     } catch (error) {
         console.error('❌ Unable to connect to the database:', error);
     }
 })();
 
-module.exports = sequelize;
+export default sequelize;

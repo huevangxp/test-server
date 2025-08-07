@@ -1,6 +1,6 @@
-const UserModel = require('../models/user.model')
+import UserModel from '../models/user.model.js'
 
-exports.createUser = async (req, res) => {
+export const createUser = async (req, res) => {
 try {
 
     await UserModel.create(req.body);
@@ -17,7 +17,7 @@ try {
     
 }
 
-exports.getAllUsers = async (req, res) => {
+export const getAllUsers = async (req, res) => {
     try {
 
         const users = await UserModel.findAndCountAll();
@@ -30,7 +30,7 @@ exports.getAllUsers = async (req, res) => {
     }
 } 
 
-exports.getUserById = async (req, res) => {
+export const getUserById = async (req, res) => {
     try {
 
         const user = await UserModel.findByPk(req.params.id);
@@ -43,7 +43,7 @@ exports.getUserById = async (req, res) => {
     }
 }
 
-exports.deleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => {
     try {
 
         await UserModel.destroy({
@@ -62,7 +62,7 @@ exports.deleteUser = async (req, res) => {
         })
     }
 }
-exports.updateUser = async (req, res) => {
+export const updateUser = async (req, res) => {
     try {
 
         await UserModel.update(req.body, {

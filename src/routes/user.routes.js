@@ -1,9 +1,9 @@
-const controller = require('../controllers/user.controller')
+import {createUser, getAllUsers, getUserById, updateUser, deleteUser} from '../controllers/user.controller.js'
 
-module.exports = (app) => {
-    app.post('/create-user', controller.createUser);
-    app.get('/get-all-users' , controller.getAllUsers)
-    app.get('/get-user-by-id/:id' , controller.getUserById)
-    app.delete('/delete-user/:id' , controller.deleteUser)
-    app.put('/update-user/:id' , controller.updateUser)
+export default (app) => {
+    app.post('/create-user', createUser);
+    app.get('/get-all-users' , getAllUsers)
+    app.get('/get-user-by-id/:id' , getUserById)
+    app.delete('/delete-user/:id' , deleteUser)
+    app.put('/update-user/:id' , updateUser)
 }
