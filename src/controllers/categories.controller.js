@@ -106,4 +106,30 @@ export const updateCategory = async (req, res) => {
     }
 }
 
+export const deleteCategory = async (req, res) => {
+    try {
+        const category = await CategoresModel.findByPk(req.params.id);
+
+        const lang = req.query.lang || 'en';
+
+        const filterData = {
+            id: category.id,
+            name: category.name[lang],
+            image: category.image
+        }
+
+        return res.status(200).json({
+            success: true,
+            data: filterData
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: 'Failed to fetch category',
+            message: error.message
+        });
+    }
+}
+
+
 
