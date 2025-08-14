@@ -66,6 +66,17 @@ export const deleteFolder = async (req, res) => {
                 error: "Folder does not exist",
             });
         }
+
+        // check if folder name is exist in database
+        const folder = await FolderModel.findOne({ where: { name } });
+        if (!folder) {
+            return res.status(400).json({
+                success: false,
+                error: "Folder does not exist",
+            });
+        }
+
+        await folder.destroy();
         
 
         fs.rm(folderPath, { recursive: true }, (err) => {
